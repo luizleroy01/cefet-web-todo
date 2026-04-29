@@ -6,7 +6,7 @@ const tarefas = [
   },
   {
     nome: "Tarefa 2",
-    categoria: "Lazer",
+    categoria: "lazer",
     realizada: false,
   },
   {
@@ -63,7 +63,7 @@ function incluirNovaTarefa() {
   novaTarefaNomeTarefa.value = ''
   novaTarefaNomeTarefa.focus()
 
-  //aplicarFiltro()
+  aplicarFiltro()
 }
 
 
@@ -77,8 +77,6 @@ function insereTarefaNaPagina(tarefa) {
   if (tarefa.realizada) {
     li.classList.add("marcado");
   }
-
-  // Opcional 5
   li.addEventListener("click", () => {
     tarefa.realizada = !tarefa.realizada;
     li.classList.toggle("marcado");
@@ -94,10 +92,15 @@ function exibirTarefas() {
     insereTarefaNaPagina(tarefa);
   });
 
-  //aplicarFiltro()
+  aplicarFiltro()
 }
 
 botaoIncluirTarefa.addEventListener('click', incluirNovaTarefa);
 filtroCategoriaEl.addEventListener('change', aplicarFiltro);
+novaTarefaNomeTarefa.addEventListener('keypress', (event) => {
+  if (event.key === 'Enter') {
+    incluirNovaTarefa()
+  }
+});
 
 exibirTarefas();
